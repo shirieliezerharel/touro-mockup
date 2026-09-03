@@ -1,0 +1,78 @@
+<div dir="rtl" style="background:#F2ECDF; padding:2.5rem 1rem; display:flex; justify-content:center; border-radius:12px;">
+  <div style="width:380px;">
+    <div style="text-align:center; margin-bottom:2rem;">
+      <div style="font-family:serif; font-size:26px; letter-spacing:3px; color:#8a8a85;">TO<span style="color:#C9A227;">U</span>RO</div>
+      <div style="font-size:11px; letter-spacing:2px; color:#a9a9a3; margin-top:2px;">מסעדת שף</div>
+    </div>
+
+    <div style="background:#ffffff; border-radius:12px; padding:2rem 1.75rem; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+
+      <div id="login-view">
+        <p style="text-align:center; font-size:12px; letter-spacing:1px; color:#C9A227; margin:0 0 4px;">ברוכים הבאים</p>
+        <p style="text-align:center; font-size:22px; font-weight:600; color:#2b2b2b; margin:0 0 1.5rem;">כניסת ספקים</p>
+
+        <label style="display:block; font-size:13px; color:#8a8a85; margin-bottom:6px;">שם משתמש</label>
+        <input id="username" type="text" placeholder="הזן שם משתמש" style="width:100%; box-sizing:border-box; height:38px; border:1px solid #e5e0d3; border-radius:8px; padding:0 12px; text-align:right; margin-bottom:14px; font-size:14px;" />
+
+        <label style="display:block; font-size:13px; color:#8a8a85; margin-bottom:6px;">סיסמה</label>
+        <input id="password" type="password" placeholder="הזן סיסמה" style="width:100%; box-sizing:border-box; height:38px; border:1px solid #e5e0d3; border-radius:8px; padding:0 12px; text-align:right; margin-bottom:6px; font-size:14px;" />
+        <p id="login-error" style="display:none; font-size:12px; color:#b5433a; margin:0 0 10px;">שם משתמש או סיסמה שגויים</p>
+
+        <div style="text-align:left; margin-bottom:20px;">
+          <a href="#" id="forgot-link" style="font-size:12px; color:#C9A227; text-decoration:none;">שכחתי סיסמה</a>
+        </div>
+
+        <button id="login-btn" style="width:100%; height:42px; background:#C9A227; color:#fff; border:none; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer;">התחברות</button>
+      </div>
+
+      <div id="forgot-view" style="display:none;">
+        <p style="text-align:center; font-size:22px; font-weight:600; color:#2b2b2b; margin:0 0 10px;">שחזור סיסמה</p>
+        <p style="font-size:13px; color:#8a8a85; margin:0 0 18px; line-height:1.6;">הזן/י את כתובת המייל המשויכת לחשבון, וישלח אליך קישור לאיפוס סיסמה</p>
+
+        <label style="display:block; font-size:13px; color:#8a8a85; margin-bottom:6px;">כתובת מייל</label>
+        <input id="reset-email" type="email" placeholder="name@example.com" style="width:100%; box-sizing:border-box; height:38px; border:1px solid #e5e0d3; border-radius:8px; padding:0 12px; text-align:right; margin-bottom:6px; font-size:14px;" />
+        <p id="reset-error" style="display:none; font-size:12px; color:#b5433a; margin:0 0 10px;">יש להזין כתובת מייל תקינה</p>
+        <p id="reset-success" style="display:none; font-size:12px; color:#5c7a3e; margin:0 0 10px; line-height:1.6;">אם הכתובת קיימת במערכת, נשלח אליה קישור לאיפוס</p>
+
+        <button id="reset-btn" style="width:100%; height:42px; background:#C9A227; color:#fff; border:none; border-radius:8px; font-size:14px; font-weight:600; margin-bottom:10px; cursor:pointer;">שליחת קישור לאיפוס</button>
+        <button id="back-btn" style="width:100%; height:38px; background:#fff; color:#8a8a85; border:1px solid #e5e0d3; border-radius:8px; font-size:13px; cursor:pointer;">חזרה להתחברות</button>
+      </div>
+
+    </div>
+
+    <p style="text-align:center; font-size:11px; color:#a9a9a3; margin-top:1.5rem;">© טורו בחצר הירושלמית | מערכת ניהול אירועים</p>
+  </div>
+</div>
+
+<script>
+document.getElementById('forgot-link').onclick = function(e){
+  e.preventDefault();
+  document.getElementById('login-view').style.display = 'none';
+  document.getElementById('forgot-view').style.display = 'block';
+};
+document.getElementById('back-btn').onclick = function(){
+  document.getElementById('forgot-view').style.display = 'none';
+  document.getElementById('login-view').style.display = 'block';
+  document.getElementById('reset-success').style.display = 'none';
+  document.getElementById('reset-error').style.display = 'none';
+};
+document.getElementById('login-btn').onclick = function(){
+  var u = document.getElementById('username').value.trim();
+  var p = document.getElementById('password').value.trim();
+  var err = document.getElementById('login-error');
+  err.style.display = (!u || !p) ? 'block' : 'none';
+};
+document.getElementById('reset-btn').onclick = function(){
+  var email = document.getElementById('reset-email').value.trim();
+  var err = document.getElementById('reset-error');
+  var ok = document.getElementById('reset-success');
+  var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!re.test(email)){
+    err.style.display = 'block';
+    ok.style.display = 'none';
+  } else {
+    err.style.display = 'none';
+    ok.style.display = 'block';
+  }
+};
+</script>
